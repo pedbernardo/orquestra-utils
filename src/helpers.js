@@ -76,6 +76,21 @@ function getContainer (field, containerRef) {
 
 /**
  * @private
+ * Limpa o valor de um campo de formulário do tipo `Arquivo`
+ * @param {HTMLElement} field - campo de formulário Orquestra
+ */
+function clearFileField (field) {
+  const fieldId = field.getAttribute('xname').substring(3)
+  const deleteBtn = field.parentElement
+    .querySelector(`#div${fieldId} > a:last-of-type`)
+
+  if (deleteBtn) {
+    deleteBtn.click()
+  }
+}
+
+/**
+ * @private
  * @param {String|HTMLElement|HTMLCollection|jQuery} field - campo de formulário Orquestra
  * @param {String} containerRef - queryString do elemento que contém o campo de formulário
  * @returns {Object} campos de formulário e informações auxiliares utilizadas internamente
@@ -99,21 +114,6 @@ export function handleField (field, containerRef) {
     fields,
     container,
     isRequired
-  }
-}
-
-/**
- * @private
- * Limpa o valor de um campo de formulário do tipo `Arquivo`
- * @param {HTMLElement} field - campo de formulário Orquestra
- */
-function clearFileField (field) {
-  const fieldId = field.getAttribute('xname').substring(3)
-  const deleteBtn = field.parentElement
-    .querySelector(`#div${fieldId} > a:last-of-type`)
-
-  if (deleteBtn) {
-    deleteBtn.click()
   }
 }
 
@@ -182,4 +182,44 @@ export function clearField (fields) {
 
     field.dispatchEvent(changeEvent)
   })
+}
+
+/**
+ * @punlic
+ * @param {HTMLElement} field - campo de formulário
+ * @param {Function} callback - função de callback
+ */
+export function onFileChange (fields, callback) {
+  const [field] = getField(fields, { returnArray: true })
+  const xType = field.getAttribute('xtype')
+  const id = field.getAttribute('xname').substring(3)
+  const btn = field.nextElementSibling
+
+  if (xType !== 'FILE') {
+    return console.error(`[Util] Para observar mudanças o campo deve ser do tipo Arquivo. Tipo informado: ${xType}`)
+  }
+
+  const observer = new MutationObserver(handleFileChange)
+
+  observer.observe(btn, { attributes: true })
+
+  function handleFileChange (mutationsList, observer) {
+    mutationsList.forEach(mutation => {
+      if (mutation.type === 'attributes') {
+        const deleteBtn = field.parentElement
+          .querySelector(`[xid=div${id}] > a:last-of-type`)
+
+        const filepath = field.value
+
+        if (deleteBtn) {
+          deleteBtn.addEventListener(
+            'click',
+            () => callback(null)
+          )
+        }
+
+        callback(filepath, deleteBtn)
+      }
+    })
+  }
 }
