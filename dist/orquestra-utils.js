@@ -92,7 +92,7 @@
   function clearFileField (field) {
     const fieldId = field.getAttribute('xname').substring(3);
     const deleteBtn = field.parentElement
-      .querySelector(`#div${fieldId} > a:last-of-type`);
+      .querySelector(`[xid=div${fieldId}] > a:last-of-type`);
 
     if (deleteBtn) {
       deleteBtn.click();
