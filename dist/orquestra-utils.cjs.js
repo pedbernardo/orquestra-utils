@@ -84,6 +84,21 @@ function getContainer (field, containerRef) {
 
 /**
  * @private
+ * Limpa o valor de um campo de formulário do tipo `Arquivo`
+ * @param {HTMLElement} field - campo de formulário Orquestra
+ */
+function clearFileField (field) {
+  const fieldId = field.getAttribute('xname').substring(3);
+  const deleteBtn = field.parentElement
+    .querySelector(`#div${fieldId} > a:last-of-type`);
+
+  if (deleteBtn) {
+    deleteBtn.click();
+  }
+}
+
+/**
+ * @private
  * @param {String|HTMLElement|HTMLCollection|jQuery} field - campo de formulário Orquestra
  * @param {String} containerRef - queryString do elemento que contém o campo de formulário
  * @returns {Object} campos de formulário e informações auxiliares utilizadas internamente
@@ -107,21 +122,6 @@ function handleField (field, containerRef) {
     fields,
     container,
     isRequired
-  }
-}
-
-/**
- * @private
- * Limpa o valor de um campo de formulário do tipo `Arquivo`
- * @param {HTMLElement} field - campo de formulário Orquestra
- */
-function clearFileField (field) {
-  const fieldId = field.getAttribute('xname').substring(3);
-  const deleteBtn = field.parentElement
-    .querySelector(`#div${fieldId} > a:last-of-type`);
-
-  if (deleteBtn) {
-    deleteBtn.click();
   }
 }
 
