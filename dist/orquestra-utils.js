@@ -195,6 +195,46 @@
   }
 
   /**
+   * @punlic
+   * @param {HTMLElement} field - campo de formulário
+   * @param {Function} callback - função de callback
+   */
+  function onFileChange (fields, callback) {
+    const [field] = getField(fields, { returnArray: true });
+    const xType = field.getAttribute('xtype');
+    const id = field.getAttribute('xname').substring(3);
+    const btn = field.nextElementSibling;
+
+    if (xType !== 'FILE') {
+      return console.error(`[Util] Para observar mudanças o campo deve ser do tipo Arquivo. Tipo informado: ${xType}`)
+    }
+
+    const observer = new MutationObserver(handleFileChange);
+
+    observer.observe(btn, { attributes: true });
+
+    function handleFileChange (mutationsList, observer) {
+      mutationsList.forEach(mutation => {
+        if (mutation.type === 'attributes') {
+          const deleteBtn = field.parentElement
+            .querySelector(`[xid=div${id}] > a:last-of-type`);
+
+          const filepath = field.value;
+
+          if (deleteBtn) {
+            deleteBtn.addEventListener(
+              'click',
+              () => callback(null)
+            );
+          }
+
+          callback(filepath, deleteBtn);
+        }
+      });
+    }
+  }
+
+  /**
    * Adiciona obrigatoriedade a um campo de forumário Orquestra
    * @param {String|HTMLElement|HTMLCollection|jQuery} field - campo de formulário Orquestra
    */
@@ -293,7 +333,8 @@
     addRequired,
     removeRequired,
     showField,
-    hideField
+    hideField,
+    onFileChange
   };
 
   function setup (config) {

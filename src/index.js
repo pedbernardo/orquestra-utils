@@ -2,7 +2,8 @@ import { defaults as configDefaults } from './_config'
 
 import {
   getField,
-  clearField
+  clearField,
+  onFileChange
 } from './helpers'
 
 import {
@@ -21,7 +22,8 @@ const UtilsPublic = {
   addRequired,
   removeRequired,
   showField,
-  hideField
+  hideField,
+  onFileChange
 }
 
 function setup (config) {
