@@ -7,6 +7,7 @@
   const defaults = {
     container: 'tr',
     hideClass: 'hidden',
+    requiredClass: 'execute-required',
     dataAttrRequired: 'data-was-required'
   };
 
@@ -66,26 +67,6 @@
 
   /**
    * @private
-   * Retona um `HTMLElement` a partir de um campo de formulário
-   *
-   * @param {HTMLElement} field - campo de formulário
-   * @param {String} containerRef - queryString do elemento que contém o campo de formulário,
-   * podendo agrupar outros elementos, comumente utilizado com o label do campo
-   * @returns {HTMLElement} contâiner do campo de formulário
-   */
-  function getContainer (field, containerRef) {
-    const container = field.closest(containerRef);
-    const fieldId = field.getAttribute('xname').substring(3);
-
-    if (!container) {
-      console.error(`[Util] não encontrado HTMLElement para referência ${container} a partir do campo ${fieldId}`);
-    }
-
-    return container
-  }
-
-  /**
-   * @private
    * Limpa o valor de um campo de formulário do tipo `Arquivo`
    * @param {HTMLElement} field - campo de formulário Orquestra
    */
@@ -125,6 +106,26 @@
       container,
       isRequired
     }
+  }
+
+  /**
+   * @public
+   * Retona um `HTMLElement` a partir de um campo de formulário
+   *
+   * @param {HTMLElement} field - campo de formulário
+   * @param {String} containerRef - queryString do elemento que contém o campo de formulário,
+   * podendo agrupar outros elementos, comumente utilizado com o label do campo
+   * @returns {HTMLElement} contâiner do campo de formulário
+   */
+  function getContainer (field, containerRef) {
+    const container = field.closest(containerRef);
+    const fieldId = field.getAttribute('xname').substring(3);
+
+    if (!container) {
+      console.error(`[Util] não encontrado HTMLElement para referência ${container} a partir do campo ${fieldId}`);
+    }
+
+    return container
   }
 
   /**
@@ -237,31 +238,57 @@
   /**
    * Adiciona obrigatoriedade a um campo de forumário Orquestra
    * @param {String|HTMLElement|HTMLCollection|jQuery} field - campo de formulário Orquestra
+   * @param {Boolean} params.toggleClass - habilita a adição de classe auxiliar ao container do campo de formulário
    */
-  function addRequired (fields) {
+  function addRequired (fields, params) {
+    params = {
+      toggleClass: false,
+      ...defaults,
+      ...params
+    };
+
     fields = Array.isArray(fields)
       ? fields
       : getField(fields, { returnArray: true });
 
+    const container = getContainer(fields[0], params.container);
+
     fields.forEach(field => {
       field.setAttribute('required', 'S');
-      field.removeAttribute('data-was-required');
+      field.removeAttribute(params.dataAttrRequired);
     });
+
+    if (params.toggleClass) {
+      container.classList.add(params.requiredClass);
+    }
   }
 
   /**
    * Remove obrigatoriedade a um campo de forumário Orquestra
    * @param {String|HTMLElement|HTMLCollection|jQuery} field - campo de formulário Orquestra
+   * @param {Boolean} params.toggleClass - habilita a remoção de classe auxiliar do container do campo de formulário
    */
-  function removeRequired (fields) {
+  function removeRequired (fields, params) {
+    params = {
+      toggleClass: false,
+      ...defaults,
+      ...params
+    };
+
     fields = Array.isArray(fields)
       ? fields
       : getField(fields, { returnArray: true });
 
+    const container = getContainer(fields[0], params.container);
+
     fields.forEach(field => {
       field.setAttribute('required', 'N');
-      field.setAttribute('data-was-required', true);
+      field.setAttribute(params.dataAttrRequired, true);
     });
+
+    if (params.toggleClass) {
+      container.classList.remove(params.requiredClass);
+    }
   }
 
   /**
