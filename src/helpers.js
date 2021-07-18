@@ -56,26 +56,6 @@ function isFieldRequired (fields) {
 
 /**
  * @private
- * Retona um `HTMLElement` a partir de um campo de formulário
- *
- * @param {HTMLElement} field - campo de formulário
- * @param {String} containerRef - queryString do elemento que contém o campo de formulário,
- * podendo agrupar outros elementos, comumente utilizado com o label do campo
- * @returns {HTMLElement} contâiner do campo de formulário
- */
-function getContainer (field, containerRef) {
-  const container = field.closest(containerRef)
-  const fieldId = field.getAttribute('xname').substring(3)
-
-  if (!container) {
-    console.error(`[Util] não encontrado HTMLElement para referência ${container} a partir do campo ${fieldId}`)
-  }
-
-  return container
-}
-
-/**
- * @private
  * Limpa o valor de um campo de formulário do tipo `Arquivo`
  * @param {HTMLElement} field - campo de formulário Orquestra
  */
@@ -115,6 +95,26 @@ export function handleField (field, containerRef) {
     container,
     isRequired
   }
+}
+
+/**
+ * @public
+ * Retona um `HTMLElement` a partir de um campo de formulário
+ *
+ * @param {HTMLElement} field - campo de formulário
+ * @param {String} containerRef - queryString do elemento que contém o campo de formulário,
+ * podendo agrupar outros elementos, comumente utilizado com o label do campo
+ * @returns {HTMLElement} contâiner do campo de formulário
+ */
+export function getContainer (field, containerRef) {
+  const container = field.closest(containerRef)
+  const fieldId = field.getAttribute('xname').substring(3)
+
+  if (!container) {
+    console.error(`[Util] não encontrado HTMLElement para referência ${container} a partir do campo ${fieldId}`)
+  }
+
+  return container
 }
 
 /**
