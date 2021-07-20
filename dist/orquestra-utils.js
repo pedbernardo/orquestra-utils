@@ -316,7 +316,7 @@
     container.classList.remove(params.hideClass);
 
     if (isRequired) {
-      addRequired(fields);
+      addRequired(fields, params);
     }
   }
 
@@ -350,7 +350,7 @@
     clearField(fields);
 
     if (isRequired) {
-      removeRequired(fields);
+      removeRequired(fields, params);
     }
   }
 
