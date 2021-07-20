@@ -27,7 +27,7 @@ export function showField (field, params) {
   container.classList.remove(params.hideClass)
 
   if (isRequired) {
-    addRequired(fields)
+    addRequired(fields, params)
   }
 }
 
@@ -61,6 +61,6 @@ export function hideField (field, params) {
   clearField(fields)
 
   if (isRequired) {
-    removeRequired(fields)
+    removeRequired(fields, params)
   }
 }
