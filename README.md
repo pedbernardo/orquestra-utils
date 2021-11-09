@@ -27,7 +27,7 @@ Utilizando CDN
 
 ```js
 // importe todas as funções com namespace
-import oh from 'orquestra-utils'
+import Utils from 'orquestra-utils'
 
 // importe as funções separadamente
 import { getMonthName } from 'orquestra-utils'
