@@ -7,10 +7,8 @@ export default {
       format: 'umd'
     },
     {
-      name: 'Utils',
       file: 'dist/orquestra-utils.esm.js',
-      format: 'esm',
-      exports: 'named'
+      format: 'esm'
     },
     {
       name: 'Utils',

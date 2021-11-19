@@ -381,7 +381,8 @@ function setup (config) {
     addRequired,
     removeRequired,
     showField,
-    hideField
+    hideField,
+    onFileChange
   }
 }
 
