@@ -9,12 +9,6 @@ export default {
       name: 'Utils',
       file: 'dist/orquestra-utils.js',
       format: 'umd'
-    },
-    {
-      name: 'Utils',
-      file: 'dist/orquestra-utils.cjs.js',
-      format: 'cjs',
-      exports: 'named'
     }
   ]
 }
