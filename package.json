@@ -1,6 +1,6 @@
 {
   "name": "orquestra-utils",
-  "version": "0.5.7",
+  "version": "0.5.8",
   "main": "./dist/orquestra-utils.esm.js",
   "module": "./src/index.js",
   "description": "JavaScript utility library to interact with Orquestra BPM forms",
