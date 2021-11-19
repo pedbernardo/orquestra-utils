@@ -47,12 +47,11 @@ const defaults = {
 ## Construtor
 
 ### Como modificar os parâmetros padrão?
-<br>
-Ao importar a biblioteca (seja através da CDN ou NPM) ela irá dispor das funções utilitárias com a configuração padrão acima. Embora os métodos permitam que a configuração seja redefinida através dos parâmetros, você pode utilizar o **construtor** para criar uma nova instância com os parâmetros desejados.
+Ao importar a biblioteca (seja através da CDN ou NPM) ela irá dispor das funções utilitárias com a configuração padrão acima. Embora os métodos permitam que a configuração seja redefinida nos parâmetros, você pode utilizar o construtor para criar uma nova instância com os parâmetros desejados.
 <br>
 
 ### `setup`
-Cria uma nova instância de Utils com os parâmetros desejados
+Cria uma nova instância de Utils com os parâmetros padrão que desejar
 
 > _Utils.setup( Object )_
 
@@ -67,7 +66,7 @@ const UtilsForm = Utils.setup({
 UtilsForm.hideField(document.querySelector('[xname=inpfieldId]'))
 ```
 
-> Importante perceber que ao utilizar o construtor os métodos não irão suportar o objeto de configuração nos métodos, utilizando sempre a configuração do setup.
+> Importante perceber que ao utilizar o construtor os métodos não irão suportar o objeto de configuração dos parâmetros, utilizando sempre a configuração do setup.
 
 <br>
 
