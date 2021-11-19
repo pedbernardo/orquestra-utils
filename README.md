@@ -1,16 +1,16 @@
 [![](https://data.jsdelivr.com/v1/package/gh/pedbernardo/orquestra-utils/badge)](https://www.jsdelivr.com/package/gh/pedbernardo/orquestra-utils)
-# orquestra-utils
-Orquestra BPM JavaScript utility library
+# 📎 Orquestra Utils
+Biblioteca utilitária de javascript para interagir com o Orquestra BPMS
 
 ## Instalação
 Utilizando package managers
 
 ```bash
-npm install https://github.com/pedbernardo/orquestra-utils.git
+npm install orquestra-utils
 
 # ou com yarn
 
-yarn add https://github.com/pedbernardo/orquestra-utils.git
+yarn add orquestra-utils
 ```
 
 Utilizando CDN
@@ -44,8 +44,32 @@ const defaults = {
   dataAttrRequired: 'data-was-required'
 }
 ```
+## Construtor
 
-> **TODO**: documentar uso do construtor
+### Como modificar os parâmetros padrão?
+<br>
+Ao importar a biblioteca (seja através da CDN ou NPM) ela irá dispor das funções utilitárias com a configuração padrão acima. Embora os métodos permitam que a configuração seja redefinida através dos parâmetros, você pode utilizar o **construtor** para criar uma nova instância com os parâmetros desejados.
+<br>
+
+### `setup`
+Cria uma nova instância de Utils com os parâmetros desejados
+
+> _Utils.setup( Object )_
+
+**Exemplo de uso**
+```js
+const UtilsForm = Utils.setup({
+  container: '.form-group',
+  hideClass: 'is-hidden',
+  requiredClass: 'is-required',
+})
+
+UtilsForm.hideField(document.querySelector('[xname=inpfieldId]'))
+```
+
+> Importante perceber que ao utilizar o construtor os métodos não irão suportar o objeto de configuração nos métodos, utilizando sempre a configuração do setup.
+
+<br>
 
 ## Métodos
 
