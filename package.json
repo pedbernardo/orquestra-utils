@@ -1,21 +1,18 @@
 {
   "name": "orquestra-utils",
   "version": "0.5.9",
-  "main": "./dist/orquestra-utils.cjs.js",
-  "module": "./dist/orquestra-utils.esm.js",
+  "main": "dist/orquestra-utils.cjs.js",
+  "module": "dist/orquestra-utils.esm.js",
   "description": "JavaScript utility library to interact with Orquestra BPM forms",
   "scripts": {
     "dev": "rollup -c -w",
     "prebuild": "rimraf dist",
     "build": "rollup -c",
-    "lint": "eslint src/*.js",
+    "lint": "eslint src/**/*.js --max-warnings=0 --fix",
     "prepare": "husky install"
   },
   "lint-staged": {
-    "*.js": [
-      "eslint --fix",
-      "git add"
-    ]
+    "src/**/*.js": "npm run lint"
   },
   "repository": {
     "type": "git",
