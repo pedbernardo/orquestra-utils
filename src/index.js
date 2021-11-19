@@ -16,28 +16,18 @@ import {
   hideField
 } from './visibility'
 
-const UtilsPublic = {
-  getField,
-  clearField,
-  addRequired,
-  removeRequired,
-  showField,
-  hideField,
-  onFileChange
-}
-
 function setup (config) {
   const params = {
     ...configDefaults,
     ...config
   }
 
-  const getField = field => UtilsPublic.getField(field, params)
-  const clearField = field => UtilsPublic.clearField(field)
-  const addRequired = field => UtilsPublic.addRequired(field)
-  const removeRequired = field => UtilsPublic.removeRequired(field)
-  const showField = field => UtilsPublic.showField(field, params)
-  const hideField = field => UtilsPublic.hideField(field, params)
+  const getField = field => getField(field, params)
+  const clearField = field => clearField(field)
+  const addRequired = field => addRequired(field)
+  const removeRequired = field => removeRequired(field)
+  const showField = field => showField(field, params)
+  const hideField = field => hideField(field, params)
 
   return {
     getField,
@@ -50,7 +40,13 @@ function setup (config) {
   }
 }
 
-export default {
+export {
   setup,
-  ...UtilsPublic
+  getField,
+  clearField,
+  addRequired,
+  removeRequired,
+  showField,
+  hideField,
+  onFileChange
 }

@@ -352,28 +352,14 @@ function hideField (field, params) {
   }
 }
 
-const UtilsPublic = {
-  getField,
-  clearField,
-  addRequired,
-  removeRequired,
-  showField,
-  hideField,
-  onFileChange
-};
-
 function setup (config) {
-  const params = {
-    ...defaults,
-    ...config
-  };
 
-  const getField = field => UtilsPublic.getField(field, params);
-  const clearField = field => UtilsPublic.clearField(field);
-  const addRequired = field => UtilsPublic.addRequired(field);
-  const removeRequired = field => UtilsPublic.removeRequired(field);
-  const showField = field => UtilsPublic.showField(field, params);
-  const hideField = field => UtilsPublic.hideField(field, params);
+  const getField = field => getField();
+  const clearField = field => clearField();
+  const addRequired = field => addRequired();
+  const removeRequired = field => removeRequired();
+  const showField = field => showField();
+  const hideField = field => hideField();
 
   return {
     getField,
@@ -386,9 +372,11 @@ function setup (config) {
   }
 }
 
-var index = {
-  setup,
-  ...UtilsPublic
-};
-
-exports.default = index;
+exports.addRequired = addRequired;
+exports.clearField = clearField;
+exports.getField = getField;
+exports.hideField = hideField;
+exports.onFileChange = onFileChange;
+exports.removeRequired = removeRequired;
+exports.setup = setup;
+exports.showField = showField;

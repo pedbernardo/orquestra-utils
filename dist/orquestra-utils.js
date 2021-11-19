@@ -1,8 +1,8 @@
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
-  typeof define === 'function' && define.amd ? define(factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Utils = factory());
-}(this, (function () { 'use strict';
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
+  typeof define === 'function' && define.amd ? define(['exports'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.Utils = {}));
+}(this, (function (exports) { 'use strict';
 
   const defaults = {
     container: 'tr',
@@ -354,28 +354,14 @@
     }
   }
 
-  const UtilsPublic = {
-    getField,
-    clearField,
-    addRequired,
-    removeRequired,
-    showField,
-    hideField,
-    onFileChange
-  };
-
   function setup (config) {
-    const params = {
-      ...defaults,
-      ...config
-    };
 
-    const getField = field => UtilsPublic.getField(field, params);
-    const clearField = field => UtilsPublic.clearField(field);
-    const addRequired = field => UtilsPublic.addRequired(field);
-    const removeRequired = field => UtilsPublic.removeRequired(field);
-    const showField = field => UtilsPublic.showField(field, params);
-    const hideField = field => UtilsPublic.hideField(field, params);
+    const getField = field => getField();
+    const clearField = field => clearField();
+    const addRequired = field => addRequired();
+    const removeRequired = field => removeRequired();
+    const showField = field => showField();
+    const hideField = field => hideField();
 
     return {
       getField,
@@ -388,11 +374,15 @@
     }
   }
 
-  var index = {
-    setup,
-    ...UtilsPublic
-  };
+  exports.addRequired = addRequired;
+  exports.clearField = clearField;
+  exports.getField = getField;
+  exports.hideField = hideField;
+  exports.onFileChange = onFileChange;
+  exports.removeRequired = removeRequired;
+  exports.setup = setup;
+  exports.showField = showField;
 
-  return index;
+  Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
