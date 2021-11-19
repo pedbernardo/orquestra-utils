@@ -3,6 +3,7 @@
   "version": "0.5.11",
   "main": "dist/orquestra-utils.esm.js",
   "module": "dist/orquestra-utils.esm.js",
+  "browser": "dist/orquestra-utils.js",
   "description": "JavaScript utility library to interact with Orquestra BPM forms",
   "scripts": {
     "dev": "rollup -c -w",
