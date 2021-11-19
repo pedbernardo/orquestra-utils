@@ -130,9 +130,8 @@ function getContainer (field, containerRef) {
  * @param {Boolean} options.returnArray - força que o retorno seja um array mesmo quando houve somente 1 campo
  * @returns {Array|HTMLElement} - campo ou array com os campos encontrados
  */
-function getField (field, { returnArray }) {
-  returnArray = returnArray || false;
-
+function getField (field, options) {
+  const returnArray = options.returnArray || false;
   // eslint-disable-next-line no-undef
   if (field instanceof jQuery) {
     return returnArray || field.length > 0
