@@ -1,3 +1,10 @@
+# Movido (deprecated)
+
+Este pacote foi movido para o respositório [Zeev-Utils](https://github.com/pedbernardo/zeev-utils) e será mantido apenas para histórico.
+**Todas as atualizações e correções serão direcionados ao novo respositório**
+
+---
+
 [![](https://data.jsdelivr.com/v1/package/gh/pedbernardo/orquestra-utils/badge)](https://www.jsdelivr.com/package/gh/pedbernardo/orquestra-utils)
 # 📎 Orquestra Utils
 Biblioteca utilitária de javascript para interagir com o Orquestra BPMS
